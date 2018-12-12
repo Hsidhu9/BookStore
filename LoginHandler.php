@@ -39,7 +39,7 @@ $ok = $service->authenticate();
 
 if ($ok)
 {
-    header("Location: home.php");
+    header("Location: Views/home.php");
 }
 else
      echo ("Login failed");

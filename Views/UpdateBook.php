@@ -1,81 +1,66 @@
 <?php
+require_once '../navbar.php';
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
-  require_once 'C:\MAMP\htdocs\Milestone1\Services\BookService.php';
-  session_start();
+  require_once '../Services/BookService.php';
   
-  
-  $book = new Book();
-  if(isset($_SESSION[('book')]))
-    $book = $_SESSION[('book')];
+  $bookService = new BookService();
+  if(isset($_GET['id']))
+  {
+      $book = $bookService->getBookById($_GET['id']);
+  }
+    
   else 
   {
       echo "we could not find the book to be updated";
       exit;
   }
-     
-  
   
   ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Update Book</title>
-  <link rel="stylesheet" type="text/css" href="../style.css">
-</head>
-<body>
-  
-  
-  
-	<div class="header">
-  	<h2>Update Book Info</h2>
-  </div>
-  <form method="post" action="">
-  	
-  	
-  	<div class="input-group">
-  	  <label>Book Title</label>
-  	  <input type="text" name="title" maxlength="100" value="<?php echo $book->getTitle()?>"/>
+<div class="container">
+  	<h2>Update Book</h2>
+	
+  <form method="post" action="../UpdateBookHandler.php">
+  	<input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
+  	<div class="form-group">
+  	  <label>Title</label>
+  	  <input type="text" class="form-control" name="title" maxlength="100" value ="<?php echo $book->getTitle()?>" />
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Book Cost</label>
-  	  <input type="text" name="cost" maxlength="25" value="<?php echo $book->getCost()?>"/>
+  	  <input type="text" class="form-control" name="cost" maxlength="25" value ="<?php echo $book->getCost()?>" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Book ISBN</label>
-  	  <input type="text" name="isbn" value="<?php echo $book->getISBN()?>"/>
+  	  <input type="text" class="form-control" name="isbn" value ="<?php echo $book->getISBN()?>" 
+  	   required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Author First Name</label>
-  	  <input type="text" name="author_firstname" value="<?php echo $book->getAuthorFirstName()?>"/>
+  	  <input type="text" class="form-control" name="author_firstname" value ="<?php echo $book->getAuthorFirstName()?>"required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Author Last Name</label>
-  	  <input type="text" name="author_lastname" value="<?php echo $book->getAuthorLastName()?>"/>
+  	  <input type="text" class="form-control" name="author_lastname" value="<?php echo $book->getAuthorLastName()?>" required/>
   	</div>
-  	<div class="input-group">
-  	  <label>Publisher First Name</label>
-  	  <input type="text" name="publisher_firstname" value="<?php echo $book->getPublisherFirstName()?>"/>
+  	<div class="form-group">
+  	  <label>Publishers First Name</label>
+  	  <input type="text" class="form-control" name="publisher_firstname" value="<?php echo $book->getPublisherFirstName()?>" required/>
   	</div>
-  	<div class="input-group">
-  	  <label>Publisher Last Name</label>
-  	  <input type="text" name="publisher_lastname" value="<?php echo $book->getPublisherLastName()?>"/>
+  	<div class="form-group">
+  	  <label>Publishers Last Name</label>
+  	  <input type="text" class="form-control" name="publisher_lastname" value ="<?php echo $book->getPublisherLastName()?>" required/>
   	</div>
 
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_book">Submit</button>
+  	<div class="form-group">
+  	  <button type="submit" class="btn btn-primary" name="submit" >Submit</button>
   	</div>
-  	<p>
-  		Already a member? <a href="../login.php">Sign in</a>
-  	</p>
+  	
   </form>
-</body>
-</html>
-
-
-
-<?php 
+  </div>
+  
     
-    
-?>
+ 
+
+

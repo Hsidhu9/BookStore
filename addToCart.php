@@ -40,5 +40,4 @@ $c->calculate_total();
 // echo "</pre>";
 
 $_SESSION['cart'] = $c;
-
 header("Location: Views/ShowCart.php");

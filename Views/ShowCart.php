@@ -1,36 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Registration</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
-<?php
+<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-require_once 'C:\MAMP\htdocs\Milestone1\Services\BookService.php';
-require_once 'C:\MAMP\htdocs\Milestone1\Models\cart.php';
-session_start();
-
+require_once '../Services/BookService.php';
+require_once '../Models/cart.php';
+require_once '../navbar.php';
 ?>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Admin</a></li>
-    </ul>
-    <form class="navbar-form navbar-right" action="../logout.php" style="background: #101010">
-      
-      <button type="submit" class="btn btn-default">Logout</button>
-    </form>
-    
-    </div>
-</nav>
-<div style="margin:1rem; display: inline-flex">
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Cart</title>
+</head>
+
+<body>
+<div style="margin:1rem">
 <?php 
 
 $bookService = new BookService();
@@ -96,8 +80,14 @@ if($c->getUserid() != $userid){
     <tr>
       
       <td><?php echo $book->getTitle()?></td>
-      <td><?php echo $book->getAuthorId()?></td>
-      <td><?php echo $qty?></td>
+      <td><?php echo $book->getAuthorFirstName(). " " . $book->getAuthorLastName()?></td>
+      <td>
+      <form method="get" action="../updateQty.php">
+      	<input type ="hidden" name="id" value="<?php echo $book->getId()?>"/>
+      	<input type = "number" name = "qty" value="<?php echo $qty?>"/>
+      	<button type= "submit">Update</button>
+      </form>
+      
       <td><?php echo "$".$book->getCost()?></td>
       <td><?php echo "$".$book->getCost() * $qty?></td>
       
@@ -105,6 +95,10 @@ if($c->getUserid() != $userid){
     <?php }?>
   </tbody>
 </table>
+<form action = "Checkout.php">
+<button type = "submit" class = "button button-primary">Proceed to checkout</button>
+</form>
+
 </div>
 	
 </body>

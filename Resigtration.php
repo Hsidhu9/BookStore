@@ -3,46 +3,80 @@
 <html>
 <head>
   <title>Registration</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>
 <body>
-  <div class="header">
-  	<h2>Register</h2>
-  </div>
+  <div class="container">
+  	<h2 align="center">Register</h2>
+  
 	
   <form method="post" action="resigtrationHandler.php">
   	<?php include('errors.php'); ?>
   	
-  	<div class="input-group">
-  	  <label>First Name</label>
-  	  <input type="text" name="firstname" maxlength="25" required/>
-  	</div>
-  	<div class="input-group">
-  	  <label>Last Name</label>
-  	  <input type="text" name="lastname" maxlength="25" required/>
-  	</div>
-  	<div class="input-group">
-  	  <label>Username</label>
-  	  <input type="text" name="username" required/>
-  	</div>
-  	<div class="input-group">
-  	  <label>Email</label>
-  	  <input type="email" name="email" required/>
-  	</div>
-  	<div class="input-group">
-  	  <label>Password</label>
-  	  <input type="password" name="password" required/>
-  	</div>
-  	<div class="input-group">
-  	  <label>Confirm password</label>
-  	  <input type="password" name="confirmpass" required/>
-  	</div>
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_user">Register</button>
-  	</div>
-  	<p>
+  <div class="row">
+    <div class="col">
+    
+      <input type="text" class="form-control" placeholder="First name" name="firstname" maxlength="25" required>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name" name="lastname" maxlength="25" required/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Username" name="username" required>
+    </div>
+    <div class="col">
+      <input type="email" class="form-control" placeholder="Email" name="email" required/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="password" class="form-control" placeholder="Password" name="password" required/>
+    </div>
+    <div class="col">
+      <input type="password" class="form-control" placeholder="Confirm Password" name="confirmpass" required/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Address1" name="address1" required/>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Address2" name="address2" required/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="City" name="city" required/>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="State" name="state" required/>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Zip Code" name="zip" required/>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Country" name="country" required/> <br>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col">
+  	  <button type="submit" class="btn btn-primary" name="reg_book">Register</button>
+  	  <p>
   		Already a member? <a href="login.php">Sign in</a>
   	</p>
+  	</div>
+  </div>
+  	
   </form>
+  </div>
 </body>
 </html>

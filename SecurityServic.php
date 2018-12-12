@@ -10,7 +10,7 @@ class SecurityServic
     private $email = "";
     private $username = "";
     private $password = "";
-    
+    private $role = "";
     public function __construct($username, $password)
     {
         
@@ -32,10 +32,7 @@ class SecurityServic
        {
            die("Connection failed: " . $conn->connect_error);
        } 
-       else 
-       {
-           echo"could not connect try again";
-       }
+       
        
        $sql = "SELECT * FROM users WHERE username = '$this->username' and password = '$this->password'";
        
@@ -46,10 +43,12 @@ class SecurityServic
            {
               $id = $row["id"];
               $username = $row["username"];
+              $role = $row["role"];
            } 
           session_start();
            $_SESSION["userid"] = $id;
            $_SESSION["username"] = $username;
+           $_SESSION["role"] = $role;
            return true;
        }
        else {
@@ -59,7 +58,7 @@ class SecurityServic
        $this->CloseConn($conn);
     }
     
-    public function register($firstname, $lastname, $email, $username, $password)
+    public function register($firstname, $lastname, $email, $username, $password, $address1, $address2,$city, $state, $zip, $country)
     
     {
         
@@ -73,18 +72,27 @@ class SecurityServic
         {
             echo"db connection successful";
         }
-        
+        $user_id = 0;
         $sql = "INSERT INTO users (firstname, lastname, email, username, password)
 VALUES ('$firstname', '$lastname', '$email', '$username', '$password');";
         
         if (mysqli_query($conn, $sql)) {
-            
-            return true;
+            $user_id = $conn->insert_id;
+            echo $user_id;
+            $addressquery = 
+            "insert into address(Address1, Address2, City, State, zip, Country, user_id) values('$address1', '$address2', '$city', '$state', '$zip', '$country', '$user_id')";
+            if($conn->query($addressquery))
+            {
+                echo $addressquery;
+                $this->CloseConn($conn);
+                return true;
+            }
+                
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
             return false;
         }
-        $this->CloseConn($conn);
+        
         
     }
     function CloseConn($conn)
@@ -92,6 +100,7 @@ VALUES ('$firstname', '$lastname', '$email', '$username', '$password');";
         $conn-> close();
         echo "close";
     }
+    
     
    
 }

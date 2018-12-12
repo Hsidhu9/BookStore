@@ -3,8 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once '../navbar.php';
-require_once 'C:\MAMP\htdocs\Milestone1\Services\BookService.php';
-require_once 'C:\MAMP\htdocs\Milestone1\Models\order.php';
+require_once '../Services/UserService.php';
+require_once '../Models/User.php';
 
 
 
@@ -45,40 +45,51 @@ require_once 'C:\MAMP\htdocs\Milestone1\Models\order.php';
     }
     </style>
   </head>
-
-<h2 align="center">All the books available.</h2> 
+<body>
+<h2 align="center">All the Users available.</h2> 
 	<br>
 	<table id="tablesearch" class="display">
   <thead>
     <tr>
       
-      <th>Book Title</th>
-      <th>ISBN</th>
-      <th>Cost</th>
-      <th>Author Name</th>
-      <th>Publisher Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>User Name</th>
+      <th>Password</th>
+      <th>Role</th>
       <th></th> 
       <th></th> 
       
     </tr>
   </thead>
   <tbody>
-  <?php
-    $bookService = new BookService();
-    $array = $bookService->getAllBooks();    
-    foreach ($array as $book) {
+  <?php 
+    
+    $UserService = new UserService();
+    $userArray = $UserService->ViewUsers();
+    foreach ($userArray as $users) {
+    
 ?>
     <tr>
       
-      <td><?php echo $book->getTitle()?></td>
-      <td><?php echo $book->getISBN()?></td>
-      <td><?php echo "$".$book->getCost()?></td>
-      <td><?php echo $book->getAuthorFirstName(). " " . $book->getAuthorLastName()?></td>
-      <td><?php echo $book->getPublisherFirstName(). " " . $book->getPublisherLastName()?></td>
+      <td><?php echo $users->getFirstname()?></td>
+      <td><?php echo $users->getLastname()?></td>
+      <td><?php echo $users->getUsername()?></td>
+      <td><?php echo $users->getPassword()?></td>
+      <td><?php if ($users->getRole() == 1){
+          echo "Admin";
+      }
+      else{
+          echo "User";
+      }
+      ?></td>
      
-      <td><form action="UpdateBook.php" class="input-group" method = "get">
-      <input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
-      <button type="submit" class="btn btn-success" name="update">Update</button></form></td>
+      <td>
+          <form action="UpdateBook.php" class="input-group" method = "get">
+          	<input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
+          	<button type="submit" class="btn btn-success" name="update">Update</button>
+      	  </form>
+  	  </td>
       <td><form action="../DeletebookHandler.php" class="input-group" method = "get">
       <input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
       <button type="submit" class="btn btn-primary " name="Delete">Delete</button></form></td>
@@ -92,5 +103,5 @@ $(document).ready( function () {
     $('#tablesearch').DataTable();
 } );
 </script>
-	
+	</body>
 </html>

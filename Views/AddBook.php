@@ -1,53 +1,49 @@
+<?php 
+require_once '../navbar.php';
+?>
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Add New Book</title>
-  <link rel="stylesheet" type="text/css" href="../style.css">
-</head>
-<body>
-  <div class="header">
+
+  <div class="container">
   	<h2>Add New Book</h2>
-  </div>
 	
-  <form method="post" action="">
+  <form method="post" action="../AddBookHandler.php">
   	<?php include('errors.php'); ?>
   	
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Book Title</label>
-  	  <input type="text" name="title" maxlength="100" required/>
+  	  <input type="text" class="form-control" name="title" maxlength="100" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Book Cost</label>
-  	  <input type="text" name="cost" maxlength="25" required/>
+  	  <input type="text" class="form-control" name="cost" maxlength="25" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Book ISBN</label>
-  	  <input type="text" name="isbn" required/>
+  	  <input type="text" class="form-control" name="isbn" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Author First Name</label>
-  	  <input type="text" name="author_firstname" required/>
+  	  <input type="text" class="form-control" name="author_firstname" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Author Last Name</label>
-  	  <input type="text" name="author_lastname" required/>
+  	  <input type="text" class="form-control" name="author_lastname" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Publishers First Name</label>
-  	  <input type="text" name="publisher_firstname" required/>
+  	  <input type="text" class="form-control" name="publisher_firstname" required/>
   	</div>
-  	<div class="input-group">
+  	<div class="form-group">
   	  <label>Publishers Last Name</label>
-  	  <input type="text" name="publisher_lastname" required/>
+  	  <input type="text" class="form-control" name="publisher_lastname" required/>
   	</div>
 
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="reg_book">Submit</button>
+  	<div class="form-group">
+  	  <button type="submit" class="btn btn-primary" name="reg_book">Submit</button>
   	</div>
   	<p>
   		Already a member? <a href="../login.php">Sign in</a>
   	</p>
   </form>
-</body>
-</html>
+  </div>
+
