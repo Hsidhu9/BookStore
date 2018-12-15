@@ -92,7 +92,9 @@ if($c->getUserid() != $userid){
       <td><?php echo "$".$book->getCost() * $qty?></td>
       
     </tr>
-    <?php }?>
+    <?php }
+    $_SESSION['cart'] = $c;
+    ?>
   </tbody>
 </table>
 <form action = "Checkout.php">

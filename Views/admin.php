@@ -67,7 +67,8 @@ require_once 'C:\MAMP\htdocs\Milestone1\Models\order.php';
     $bookService = new BookService();
     $array = $bookService->getAllBooks();    
     foreach ($array as $book) {
-?>
+
+        ?>
     <tr>
       
       <td><?php echo $book->getTitle()?></td>

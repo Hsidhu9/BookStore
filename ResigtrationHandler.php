@@ -20,7 +20,6 @@ $state = $_POST["state"];
 $zip = $_POST["zip"];
 $country =  $_POST["country"];
 
-
 /* echo "Post data<br>";
  print_r( $_POST);
  echo "After testing, remove this output for obvious reasons. <br>"; */
@@ -87,9 +86,11 @@ if($password != $confirmpass)
 $service = new SecurityServic("","");
 $ok = $service->register($firstname, $lastname, $email, $username, $password, $address1, $address2,$city, $state, $zip, $country );
 
-if ($ok)
-    echo "Thanks for registering. Please <a href=login.php>login</a>!";  
-else
+if ($ok){
+    header("Location: login.php");
+}
+else 
     echo ("Your account could not be created");
+
         
-        ?> 
+  ?> 

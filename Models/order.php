@@ -2,11 +2,44 @@
 
 class order {
     
-    private  $Id = "";
+    private  $orderId = "";
     private $OrderNumber = "";
     private $OrderDate = "";
-    private $OrderQuantity = "";
+    private $address_id = "";
+    private $bookId = "";
     
+    /**
+     * @return string
+     */
+    public function getAddress_id()
+    {
+        return $this->address_id;
+    }
+
+    /**
+     * @param string $address_id
+     */
+    public function setAddress_id($address_id)
+    {
+        $this->address_id = $address_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param string $orderId
+     */
+    public function setOrderId($orderId)
+    {
+        $this->orderId = $orderId;
+    }
+
     /**
      * @return string
      */
@@ -31,12 +64,22 @@ class order {
         return $this->OrderDate;
     }
 
+    
+
     /**
      * @return string
      */
-    public function getOrderQuantity()
+    public function getBookId()
     {
-        return $this->OrderQuantity;
+        return $this->bookId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->userId;
     }
 
     /**
@@ -71,4 +114,21 @@ class order {
         $this->OrderQuantity = $OrderQuantity;
     }
 
+    /**
+     * @param string $bookId
+     */
+    public function setBookId($bookId)
+    {
+        $this->bookId = $bookId;
+    }
+
+    /**
+     * @param string $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    
 }

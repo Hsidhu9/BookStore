@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Services/BookService.php';
+require_once 'orderHandler.php';
 $id = 0;
 
 if(isset($_GET['id']))
@@ -25,4 +26,6 @@ if($ok == true)
 else{
     echo "Something went wrong";
 }
+
+
 ?>

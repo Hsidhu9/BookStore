@@ -1,15 +1,11 @@
-<?php
+<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-require_once '../navbar.php';
 require_once '../Services/UserService.php';
-require_once '../Models/User.php';
-
-
+require_once '../navbar.php';
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +41,8 @@ require_once '../Models/User.php';
     }
     </style>
   </head>
-<body>
+
+
 <h2 align="center">All the Users available.</h2> 
 	<br>
 	<table id="tablesearch" class="display">
@@ -55,47 +52,54 @@ require_once '../Models/User.php';
       <th>First Name</th>
       <th>Last Name</th>
       <th>User Name</th>
-      <th>Password</th>
       <th>Role</th>
-      <th></th> 
-      <th></th> 
+      <th>Update Role</th>
+      <th>Delete User</th> 
+      
       
     </tr>
   </thead>
   <tbody>
   <?php 
-    
-    $UserService = new UserService();
-    $userArray = $UserService->ViewUsers();
-    foreach ($userArray as $users) {
-    
-?>
-    <tr>
+  $UserService = new UserService();
+  $userArray = $UserService->ViewUsers();
+  
+  foreach ($userArray as $user)
+  {
+  ?>
+	<tr>
       
-      <td><?php echo $users->getFirstname()?></td>
-      <td><?php echo $users->getLastname()?></td>
-      <td><?php echo $users->getUsername()?></td>
-      <td><?php echo $users->getPassword()?></td>
-      <td><?php if ($users->getRole() == 1){
-          echo "Admin";
-      }
-      else{
-          echo "User";
-      }
-      ?></td>
+      <td><?php echo $user->getFirstname()?></td>
+      <td><?php echo $user->getLastname()?></td>
+      <td><?php echo$user->getUsername()?></td>
+      
+      <form action="../updateUserHandler.php" class="input-group" method = "get">
+      <td><?php  if($user->getRole() == 1){?>
+          <input type="text"  value='admin' name="role"
+          />
+      <?php } else{ ?>
+          <input type='text'  value='user' name='role'/>
+          
+      <?php } ?></td>
      
       <td>
-          <form action="UpdateBook.php" class="input-group" method = "get">
-          	<input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
-          	<button type="submit" class="btn btn-success" name="update">Update</button>
-      	  </form>
+          
+          	<input type="hidden"  value="<?php echo $user->getUserId()?>" name="user_id"/>
+          	<input type="submit" class="btn btn-success" name="update" Value="Update"/>
+      	 
   	  </td>
-      <td><form action="../DeletebookHandler.php" class="input-group" method = "get">
-      <input type="hidden"  value="<?php echo $book->getId() ?>" name="id"/>
-      <button type="submit" class="btn btn-primary " name="Delete">Delete</button></form></td>
+  	   </form>
+      <td>
+          <form action="../DeleteUserHandler.php" class="input-group" method = "get">
+          <input type="hidden"  value="<?php echo $user->getUserId()?>" name="id"/>
+          <input type="submit" class="btn btn-primary " name="Delete" Value="Delete"/>
+      </form>
+      </td>
       
     </tr>
-    <?php } ?>
+
+    <?php }?>
+    
   </tbody>
 </table>
 <script>
@@ -103,5 +107,5 @@ $(document).ready( function () {
     $('#tablesearch').DataTable();
 } );
 </script>
-	</body>
+	
 </html>

@@ -33,7 +33,8 @@ session_start();
           <a class="dropdown-item" href="../Views/AddBook.php">Add new Book</a>
           <a class="dropdown-item" href="../Views/admin.php">View Books</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="../Views/ShowUsers.php">All Users</a>
+          <a class="dropdown-item" href="../Views/ShowUsers.php">Show All Users</a>
+		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Orders</a>
         </div>
         </div>
       </li>
@@ -46,7 +47,7 @@ session_start();
       
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search by title" aria-label="Search" name ="search" >
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Book by title" aria-label="Search" name ="search" >
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <form class="form-inline my-2 my-lg-0" action="../logout.php">

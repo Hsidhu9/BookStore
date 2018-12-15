@@ -69,7 +69,9 @@
     </div>
     <div class="row">
     <div class="col">
+    
   	  <button type="submit" class="btn btn-primary" name="reg_book">Register</button>
+  	  	
   	  <p>
   		Already a member? <a href="login.php">Sign in</a>
   	</p>

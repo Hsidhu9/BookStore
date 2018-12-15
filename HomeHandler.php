@@ -34,6 +34,7 @@ class HomeHandler{
                   $book->setCost($row["cost"]);
                   $book->setTitle($row["title"]);
                   $book->setISBN($row["isbn"]);
+                  
                  
                   
                   $Products[$i] = $book;

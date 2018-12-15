@@ -1,10 +1,27 @@
 <?php
 class User{
+    private $userId;
     private $firstname;
     private $lastname;
     private $username;
     private $password;
     private $role;
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
     /**
      * @return mixed
      */

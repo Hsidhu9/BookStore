@@ -58,40 +58,45 @@ class SecurityServic
        $this->CloseConn($conn);
     }
     
-    public function register($firstname, $lastname, $email, $username, $password, $address1, $address2,$city, $state, $zip, $country)
-    
+    public function register($firstname, $lastname, $email, $username, $password, $address1, $address2,$city, $state, $zip, $country) 
     {
         
         $dbConnection = new dbconnection();
         $conn = $dbConnection->createConn();
-        if ($conn->connect_error)
-        {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        else
-        {
-            echo"db connection successful";
-        }
-        $user_id = 0;
-        $sql = "INSERT INTO users (firstname, lastname, email, username, password)
-VALUES ('$firstname', '$lastname', '$email', '$username', '$password');";
         
-        if (mysqli_query($conn, $sql)) {
+        // Set autocommit to off
+        mysqli_autocommit($conn,FALSE);
+        
+        $sql = "INSERT INTO users (firstname, lastname, email, username, password)
+VALUES ('$firstname', '$lastname', '$email', '$username', '$password')";
+        
+        if ($conn->query($sql) === true) {
+            echo $conn->insert_id;
             $user_id = $conn->insert_id;
-            echo $user_id;
+            
             $addressquery = 
-            "insert into address(Address1, Address2, City, State, zip, Country, user_id) values('$address1', '$address2', '$city', '$state', '$zip', '$country', '$user_id')";
-            if($conn->query($addressquery))
+            "insert into address(address1, address2, city, state, zipcode, country, users_id)
+values('$address1', '$address2', '$city', '$state', '$zip', '$country', '$user_id')";
+            if($conn->query($addressquery) === false)
             {
-                echo $addressquery;
+                echo "address is not inserted";
+                mysqli_rollback($conn);
+               
                 $this->CloseConn($conn);
-                return true;
+                return false;
             }
-                
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            
+        }
+        else{
+            mysqli_rollback($conn);
+            echo "user is not inserted";
+            $this->CloseConn($conn);
             return false;
         }
+        
+        mysqli_commit($conn);
+        $conn->close();
+        return true;
         
         
     }
