@@ -82,7 +82,7 @@ from orders join orderdetails on orders.id = orderdetails.orders_id;";
   
   if($result->num_rows > 0)
   {
-      echo $result->num_rows;
+     // echo $result->num_rows;
       $i = 0;
       while($row = $result->fetch_assoc())
       {

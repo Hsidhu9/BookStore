@@ -54,6 +54,7 @@ if($c->getUserid() != $userid){
 
 
 
+
 ?>	
 	<div style="margin:5px">
 	 View Cart <br>
@@ -85,20 +86,29 @@ if($c->getUserid() != $userid){
       <form method="get" action="../updateQty.php">
       	<input type ="hidden" name="id" value="<?php echo $book->getId()?>"/>
       	<input type = "number" name = "qty" value="<?php echo $qty?>"/>
-      	<button type= "submit">Update</button>
+      	<button type= "submit" class="btn btn-info btn-sm">Update</button>
       </form>
       
       <td><?php echo "$".$book->getCost()?></td>
       <td><?php echo "$".$book->getCost() * $qty?></td>
       
     </tr>
+    
+    
     <?php }
-    $_SESSION['cart'] = $c;
+   
     ?>
   </tbody>
 </table>
+<?php 
+
+
+$total_price =  $c->calculate_total();
+$_SESSION['cart'] = $c;
+ ?>
+<label><b>Total Cost is </b></label><?php echo " $ ".  $total_price?>
 <form action = "Checkout.php">
-<button type = "submit" class = "button button-primary">Proceed to checkout</button>
+<button type = "submit" class = "btn btn-primary">Proceed to checkout</button>
 </form>
 
 </div>

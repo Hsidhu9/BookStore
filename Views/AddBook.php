@@ -41,9 +41,7 @@ require_once '../navbar.php';
   	<div class="form-group">
   	  <button type="submit" class="btn btn-primary" name="reg_book">Submit</button>
   	</div>
-  	<p>
-  		Already a member? <a href="../login.php">Sign in</a>
-  	</p>
+  	
   </form>
   </div>
 

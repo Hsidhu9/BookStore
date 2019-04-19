@@ -120,7 +120,7 @@ authors.author_lastname, publishers.publisher_firstname, publishers.publisher_la
     }
     function UpdateBook(int $id, array $UpdatedBookProperties)
     {
-        echo $id;
+        //echo $id;
         $previousBook =$this->getBookById($id);
         
         $x = $previousBook->getAuthorId();

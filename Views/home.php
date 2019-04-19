@@ -27,7 +27,7 @@ $array = $bookService->getAllBooks();
 <div class="row">
 <?php
 
-for ($i=0; $i<=9; $i++)
+for ($i=0; $i<=11; $i++)
 {
     //echo "title :" .$book->getTitle(). "Cost $". $book->getCost()." ISBN ". $book->getISBN()
 ?>

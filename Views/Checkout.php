@@ -78,10 +78,16 @@ else{
     </tr>
     <?php }
     
+    
     //echo "<b>".$cart->getSubtotals() ."</b>"
     ?>
   </tbody>
 </table>
+<?php 
+$total_price =  $cart->calculate_total();
+$_SESSION['cart'] = $cart;
+ ?>
+<label><b>Total Cost is </b></label><?php echo " $ ".  $total_price?>
 
 	
 

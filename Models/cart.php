@@ -1,6 +1,6 @@
 <?php
 require_once 'C:\MAMP\htdocs\Milestone1\Services\BookService.php';
-require_once 'C:\MAMP\htdocs\Milestone1\Models/Book.php';
+require_once 'C:\MAMP\htdocs\Milestone1\Models\Book.php';
 
 class Cart{
     private $userid;
@@ -123,7 +123,7 @@ class Cart{
             
         }
         $this->total_price = $total;
-        
+       return $this->total_price;
         
         //$this->subtotals = $subtotals_array;
     }
